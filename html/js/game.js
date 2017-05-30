@@ -1,19 +1,33 @@
-var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
+var version = 2;
+var debug = true;
+var debugLevel = 0;
+/* debug levels
+**
+** 0 - messages and above (shitloads)
+** 1 - warnings and above
+** 2 - errors and above
+** 3 - critical messages
+** 4 - super-critical/fatal messages
+**
+*/
 
+var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
 var baddies = null;
 
 function preload() {
-  console.log("preload()");
-  console.log("Loading images");
+  dbg(0, "preload()");
 
-  game.load.image('test', 'images/test/test.png');
-  game.load.image('pew', 'images/test/pewpew.png');
-  game.load.image('baddie', 'images/test/baddie.png');
+  imageLoad('player', 'images/player.png');
 
-  return;
+  imageLoad('enemyDerp', 'images/enemies/enemyDerp.png');
+
+  imageLoad('weaponBasic', 'images/weapons/weaponBasic.png');
+
+  imageLoad('powerupRapidShot', 'images/powerups/powerupRapidShot.png');
 }
 
 function create() {
+  dbg(0, "create()");
   player.create();
 
   baddies = game.add.group();
@@ -28,15 +42,14 @@ function create() {
   enemyDerp.create(400, 400);
   baddies.add(enemyDerp.sprite);
 
-  console.log(player.bullets);
-  console.log(baddies);
-
-  return;
+  powerupRapidShot.create();
 }
 
 function update() {
-  game.physics.arcade.overlap(player.bullets, baddies, player.bulletsCollisionBaddies, null, this);
+  game.physics.arcade.overlap(player.weapon.bullets, baddies, player.weapon.collide, null, this);
+  //game.physics.arcade.overlap(player.sprite, powerupRapidShot.sprite, powerupRapidShot.collide, null, this);
+  if (Phaser.Rectangle.intersects(player.sprite.getBounds(), powerupRapidShot.sprite.getBounds())) {
+    powerupRapidShot.collide(powerupRapidShot.sprite, player.sprite);
+  }
   player.update();
-
-  return;
 }
