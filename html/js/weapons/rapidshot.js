@@ -5,6 +5,7 @@ var weaponRapidShot = {
   speed: 600,
   rate: 50,
   max: 100,
+  autofire: true,
   next: 0,
 
   create: function() {

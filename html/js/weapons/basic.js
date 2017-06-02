@@ -5,6 +5,7 @@ var weaponBasic = {
   speed: 300,
   rate: 200,
   max: 10,
+  autofire: true,
   next: 0,
 
   create: function() {
