@@ -13,22 +13,28 @@ var debugLevel = 0;
 
 var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {preload: preload, create: create, update: update});
 var baddies = null;
+var fullscreenKey = null;
 
 function preload() {
   dbg(0, "preload()");
 
   imageLoad('player', 'images/player.png');
-
   imageLoad('enemyDerp', 'images/enemies/enemyDerp.png');
-
   imageLoad('weaponBasic', 'images/weapons/weaponBasic.png');
-
+  imageLoad('weaponLaser', 'images/weapons/weaponLaser.png');
   imageLoad('powerupRapidShot', 'images/powerups/powerupRapidShot.png');
 }
 
 function create() {
   dbg(0, "create()");
+
+  game.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+  fullscreenKey = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  fullscreenKey.onDown.add(fullscreen, this);
+
   player.create();
+
+  enemyWorldBorder.create();
 
   baddies = game.add.group();
   baddies.enableBody = true;
@@ -41,15 +47,26 @@ function create() {
   */
   enemyDerp.create(400, 400);
   baddies.add(enemyDerp.sprite);
+  //baddies.add(enemyWorldBorder.borderTop);
 
   powerupRapidShot.create();
 }
 
 function update() {
   game.physics.arcade.overlap(player.weapon.bullets, baddies, player.weapon.collide, null, this);
+  game.physics.arcade.overlap(player.weapon.bullets, enemyWorldBorder.border, player.weapon.collide, null, this);
+  game.physics.arcade.collide(player.group, enemyWorldBorder.border, null, null, this);
   //game.physics.arcade.overlap(player.sprite, powerupRapidShot.sprite, powerupRapidShot.collide, null, this);
   if (Phaser.Rectangle.intersects(player.sprite.getBounds(), powerupRapidShot.sprite.getBounds())) {
     powerupRapidShot.collide(powerupRapidShot.sprite, player.sprite);
   }
   player.update();
+}
+
+function fullscreen() {
+  if (game.scale.isFullScreen) {
+    game.scale.stopFullScreen();
+  } else {
+    game.scale.startFullScreen(false);
+  }
 }

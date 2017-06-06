@@ -3,11 +3,12 @@ var player = {
   weapon: weaponBasic,
   speed: 200,
   input: { w: null, s: null, a: null, d: null },
+  group: null,
 
   create: function() {
     dbg(0, "player.create()");
     dbg(0, "creating player sprite");
-    this.sprite = game.add.sprite(0, 0, 'player');
+    this.sprite = game.add.sprite(632, 351, 'player');
     game.physics.arcade.enable(this.sprite);
     this.sprite.body.collideWorldBounds = true;
     this.sprite.ourParent = this;
@@ -19,6 +20,12 @@ var player = {
     this.input.s = game.input.keyboard.addKey(Phaser.Keyboard.S);
     this.input.a = game.input.keyboard.addKey(Phaser.Keyboard.A);
     this.input.d = game.input.keyboard.addKey(Phaser.Keyboard.D);
+
+    this.group = game.add.group();
+    this.group.enableBody = true;
+    this.group.physicsBodyType = Phaser.Physics.ARCADE;
+
+    this.group.add(this.sprite);
   },
 
   weaponSwap: function(w) {
