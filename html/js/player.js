@@ -4,6 +4,8 @@ var player = {
   speed: 200,
   input: { w: null, s: null, a: null, d: null },
   group: null,
+  score: 0,
+  lives: 3,
 
   create: function() {
     dbg(0, "player.create()");
