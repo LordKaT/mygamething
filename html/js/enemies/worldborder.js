@@ -21,27 +21,27 @@ var enemyWorldBorder = {
     g.drawRect(1250, 50, 5, 620); // right
     g.endFill();
 
-    this.borderTop = game.add.sprite(25, 50, null);
+    this.borderTop = game.add.sprite(25, 0, null);
     game.physics.arcade.enable(this.borderTop);
-    this.borderTop.body.setSize(1230, 5, 0, 0);
+    this.borderTop.body.setSize(1230, 50, 0, 0);
     this.borderTop.body.immovable = true;
     this.borderTop.ourParent = this;
 
     this.borderBottom = game.add.sprite(25, 670, null);
     game.physics.arcade.enable(this.borderBottom);
-    this.borderBottom.body.setSize(1230, 5, 0, 0);
+    this.borderBottom.body.setSize(1230, 50, 0, 0);
     this.borderBottom.body.immovable = true;
     this.borderBottom.ourParent = this;
 
-    this.borderLeft = game.add.sprite(25, 50, null);
+    this.borderLeft = game.add.sprite(0, 50, null);
     game.physics.arcade.enable(this.borderLeft);
-    this.borderLeft.body.setSize(5, 620, 0, 0);
+    this.borderLeft.body.setSize(30, 620, 0, 0);
     this.borderLeft.body.immovable = true;
     this.borderLeft.ourParent = this;
 
     this.borderRight = game.add.sprite(1250, 50, null);
     game.physics.arcade.enable(this.borderRight);
-    this.borderRight.body.setSize(5, 620, 0, 0);
+    this.borderRight.body.setSize(30, 620, 0, 0);
     this.borderRight.body.immovable = true;
     this.borderRight.ourParent = this;
 

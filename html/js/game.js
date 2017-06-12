@@ -50,6 +50,10 @@ function create() {
   //baddies.add(enemyWorldBorder.borderTop);
 
   powerupRapidShot.create();
+
+  var s = { font: "16px Px437_DTK_BIOS", fill: "#ffffff", align: "left" };
+  var text =  game.add.text(5, 5, "Pewpew McGee", s);
+
 }
 
 function update() {
