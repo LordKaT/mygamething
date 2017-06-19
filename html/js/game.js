@@ -47,6 +47,8 @@ function create() {
 
   powerupRapidShot.create();
 
+  infotext_create();
+
   titleText = game.add.text(25, 5, "Pewpew McGee", { font: "16px Px437_DTK_BIOS", fill: "#ffffff", align: "left" });
   scoreText = game.add.text(0, 0, player.score, { font: "16px Px437_DTK_BIOS", fill: "#00ff00", align: "right", boundsAlignH: "right", boundsAlignV: "top", wordWrap: false });
   scoreText.setTextBounds(1100, 25, 150, 16);
@@ -54,10 +56,9 @@ function create() {
   livesText.setTextBounds(25, 25, 300, 16);
   waveText = game.add.text(0, 0, "Wave " + player.wave, { font: "16px Px437_DTK_BIOS", fill: "#ffffff", align: "left", boundsAlignH: "left", boundsAlignV: "top", wordWrap: false });
   waveText.setTextBounds(25, 680, 300, 16);
-  infoText = game.add.text(0, 0, "Bonus life every " + bonusScore + " points !!", { font: "16px Px437_DTK_BIOS", fill: "#ffffff", align: "center", boundsAlignH: "center", boundsAlignV: "top", wordWrap: false });
-  infoText.setTextBounds(0, 680, 1280, 16);
-  infoText.fill = "#ff0000";
+
 }
+
 
 function update() {
   //game.physics.arcade.overlap(player.weapon.bullets, baddies, player.weapon.collide, null, this);
