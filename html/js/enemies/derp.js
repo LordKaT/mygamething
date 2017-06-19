@@ -2,10 +2,11 @@ var enemyDerp = {
   name: "Derp",
   sprite: null,
   weapon: null,
-  health: 20,
+  health: 5,
+  points: 1,
+  id: null, // internal tracking
 
   create: function(x, y) {
-    dbg(0, "enemyDerp.create()");
     this.sprite = game.add.sprite(x, y, 'enemyDerp');
     game.physics.arcade.enable(this.sprite);
     this.sprite.body.collideWorldBounds = true;
@@ -13,7 +14,7 @@ var enemyDerp = {
   },
 
   update: function() {
-    game.physics.arcade.moveToXY(this.sprite, player.sprite.x, player.sprite.y, 240);
+    game.physics.arcade.moveToXY(this.sprite, player.sprite.body.x, player.sprite.body.y, 120);
   },
 
   hit: function(damage) {
@@ -24,7 +25,9 @@ var enemyDerp = {
   },
 
   kill: function() {
-    dbg(0, "enemyDerp.kill()");
+    player.addPoints(this.points);
+    enemies.destroy(this);
     this.sprite.kill();
+    enemies.spawn(this, (Math.random() * 1150) + 50, (Math.random() * 550) + 75);
   }
 }

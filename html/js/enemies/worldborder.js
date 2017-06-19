@@ -23,7 +23,7 @@ var enemyWorldBorder = {
 
     this.borderTop = game.add.sprite(25, 0, null);
     game.physics.arcade.enable(this.borderTop);
-    this.borderTop.body.setSize(1230, 50, 0, 0);
+    this.borderTop.body.setSize(1230, 55, 0, 0);
     this.borderTop.body.immovable = true;
     this.borderTop.ourParent = this;
 

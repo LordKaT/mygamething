@@ -6,6 +6,7 @@ var player = {
   group: null,
   score: 0,
   lives: 3,
+  wave: 1,
 
   create: function() {
     dbg(0, "player.create()");
@@ -35,7 +36,17 @@ var player = {
     this.weapon.create();
   },
 
+  addPoints: function(s) {
+    for (var i = 0; i < s; i++) {
+      this.score++;
+      if (this.score % bonusScore === 0) {
+        this.lives++;
+      }
+    }
+  },
+
   update: function() {
+    // earn extra life
     if (this.input.w.isDown) {
       this.sprite.body.velocity.y = -this.speed;
     } else if (this.input.s.isDown) {
