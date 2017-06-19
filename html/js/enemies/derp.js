@@ -12,7 +12,9 @@ var enemyDerp = {
     this.sprite.ourParent = this;
   },
 
-  update: function() { },
+  update: function() {
+    game.physics.arcade.moveToXY(this.sprite, player.sprite.x, player.sprite.y, 240);
+  },
 
   hit: function(damage) {
     this.health -= damage;

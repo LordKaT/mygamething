@@ -65,6 +65,7 @@ function update() {
     powerupRapidShot.collide(powerupRapidShot.sprite, player.sprite);
   }
   player.update();
+  enemyDerp.update();
 }
 
 function fullscreen() {
